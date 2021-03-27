@@ -15,16 +15,14 @@ namespace Laba28._03
             this.directory = path;
             this.word = keyword;
         }
-
         public void result()
         {
             var keywords = from search in Directory.GetFiles(directory, "*", SearchOption.AllDirectories) where File.ReadAllLines(search).Contains(word) select search;
 
-            foreach (var words in keywords)
+            foreach (var files in keywords)
             {
-                Console.WriteLine(words);
+                Console.WriteLine(files);
             }
         }
-
     }
 }

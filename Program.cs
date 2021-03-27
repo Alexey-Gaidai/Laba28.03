@@ -12,11 +12,11 @@ namespace Laba28._03
     {
         static void Main(string[] args)
         {
-            //FileStream fs = new FileStream("D:\\FullNameSerialize.xml", FileMode.OpenOrCreate, FileAccess.Write);
-            //FullNameClass fnc = new FullNameClass("Ivan", "Ivanov", "Ivanovich");
-            //fnc.Print();
-            //fnc.Serialize(fs);
-            /*fnc = new FullNameClass("Petr", "Petrov", "Petrovich");
+            /*FileStream fs = new FileStream("D:\\FullNameSerialize.xml", FileMode.OpenOrCreate, FileAccess.Write);
+            FullNameClass fnc = new FullNameClass("Ivan", "Ivanov", "Ivanovich");
+            fnc.Print();
+            fnc.Serialize(fs);
+            fnc = new FullNameClass("Petr", "Petrov", "Petrovich");
             fnc.Print();
             fs = new FileStream("D:\\FullNameSerialize.xml", FileMode.OpenOrCreate, FileAccess.Read);
             fnc.Deserialize(fs);
@@ -25,6 +25,7 @@ namespace Laba28._03
             search kw = new search("day", path);
             kw.result();
             */
+            
             string choice;//переменная ввода
             string path;
             string keyword;
@@ -53,26 +54,27 @@ namespace Laba28._03
                 switch (choice)//действия по нажатию
                 {
                     case "1":
+
+                        break;
+                    case "2":
+
+                        break;
+                    case "3":
                         Console.WriteLine("Введите путь к файлу: ");
                         path = Console.ReadLine();
                         FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
-                        FullNameClass fnc = new FullNameClass("Ivan", "Ivanov", "Ivanovich");
+                        FullNameClass fnc = new FullNameClass("Ivan", "Ivanov", "Ivanovichsuka");
                         fnc.Print();
                         fnc.Serialize(fs);
                         Console.WriteLine("Сериализовано!");
                         break;
-                    case "2":
+                    case "4":
                         Console.WriteLine("Введите путь к файлу: ");
                         path = Console.ReadLine();
-                        fnc = new FullNameClass("Petr", "Petrov", "Petrovich");
-                        fnc.Print();
-                        fs = new FileStream("D:\\FullNameSerialize.xml", FileMode.OpenOrCreate, FileAccess.Read);
-                        fnc.Deserialize(fs);
-                        fnc.Print();
-                        break;
-                    case "3":
-                        break;
-                    case "4":
+                        fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Read);
+                        FullNameClass fnc1 = new FullNameClass();
+                        fnc1.Deserialize(fs);
+                        fnc1.Print();
                         break;
                     case "5":
                         Console.WriteLine("Введите директорию: ");
