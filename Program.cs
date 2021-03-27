@@ -12,15 +12,18 @@ namespace Laba28._03
     {
         static void Main(string[] args)
         {
-                FileStream fs = new FileStream("D:\\FullNameSerialize.xml",FileMode.OpenOrCreate, FileAccess.Write);
-                FullNameClass fnc = new FullNameClass("Ivan", "Ivanov", "Ivanovich");
-                fnc.Print();
-                fnc.Serialize(fs);
-                fnc = new FullNameClass("Petr", "Petrov", "Petrovich");
-                fnc.Print();
-                fs = new FileStream("D:\\FullNameSerialize.xml",FileMode.OpenOrCreate, FileAccess.Read);
-                fnc.Deserialize(fs);
-                fnc.Print();
+            FileStream fs = new FileStream("D:\\FullNameSerialize.xml",FileMode.OpenOrCreate, FileAccess.Write);
+            FullNameClass fnc = new FullNameClass("Ivan", "Ivanov", "Ivanovich");
+            fnc.Print();
+            fnc.Serialize(fs);
+            fnc = new FullNameClass("Petr", "Petrov", "Petrovich");
+            fnc.Print();
+            fs = new FileStream("D:\\FullNameSerialize.xml",FileMode.OpenOrCreate, FileAccess.Read);
+            fnc.Deserialize(fs);
+            fnc.Print();
+            string path = "D:\\laba28.03";
+            //string[] dir = Directory.GetFiles(path);
+            Console.WriteLine(Directory.GetFiles(path));
         }
     }
 }
