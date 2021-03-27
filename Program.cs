@@ -21,9 +21,9 @@ namespace Laba28._03
             fs = new FileStream("D:\\FullNameSerialize.xml",FileMode.OpenOrCreate, FileAccess.Read);
             fnc.Deserialize(fs);
             fnc.Print();
-            string path = "D:\\laba28.03";
-            //string[] dir = Directory.GetFiles(path);
-            Console.WriteLine(Directory.GetFiles(path));
+            string path = @"D:\laba28.03";
+            search kw = new search("day", path);
+            kw.result();
         }
     }
 }
