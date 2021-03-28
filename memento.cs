@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Laba28._03
 {
-    class Memento
+    public class Memento
     {
         public string State { get; private set; }
         public Memento(string state)
@@ -12,11 +12,11 @@ namespace Laba28._03
             this.State = state;
         }
     }
-    class Caretaker
+    public class Caretaker
     {
         public Memento Memento { get; set; }
     }
-    class Originator
+    public class Originator
     {
         public string State { get; set; }
         public void SetMemento(Memento memento)

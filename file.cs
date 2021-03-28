@@ -10,7 +10,7 @@ namespace Laba28._03
 {
   
         [Serializable]
-        public class FullNameClass
+        public class FullNameClass : Originator
         {
             public string Name { get; set; }
             public string Surname { get; set; }
@@ -22,14 +22,32 @@ namespace Laba28._03
             {
                 Name = name; Surname = surname; MiddleName = middle;
             }
-            public void Serialize(FileStream fs)
+
+            public void SerializeBin(FileStream fs)
+            {
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(fs, this);
+            fs.Flush();
+            fs.Close();
+            }
+            public void DeserializeBin(FileStream fs)
+            {
+            BinaryFormatter bf = new BinaryFormatter();
+            FullNameClass deserialized = (FullNameClass)bf.Deserialize(fs);
+            Name = deserialized.Name;
+            Surname = deserialized.Surname;
+            MiddleName = deserialized.MiddleName;
+            fs.Close();
+            }
+
+            public void SerializeXML(FileStream fs)
             {
                 XmlSerializer bf = new XmlSerializer(typeof(FullNameClass));
                 bf.Serialize(fs, this);
                 fs.Flush();
                 fs.Close();
             }
-            public void Deserialize(FileStream fs)
+            public void DeserializeXML(FileStream fs)
             {
                 XmlSerializer bf = new XmlSerializer(typeof(FullNameClass));
                 FullNameClass deserialized = (FullNameClass)bf.Deserialize(fs);
@@ -43,4 +61,4 @@ namespace Laba28._03
                 Console.WriteLine("Name={0} Surname={1} Middle={2}", Name, Surname, MiddleName);
             }
         }
-    }
+}
