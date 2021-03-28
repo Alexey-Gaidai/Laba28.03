@@ -59,7 +59,7 @@ namespace Laba28._03
                         Console.WriteLine("Введите путь к файлу: ");
                         path = Console.ReadLine();
                         FileStream bin = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
-                        FullNameClass fnc2 = new FullNameClass("Grigory", "Grigoriev", "Grigoryievich");
+                        FullNameClass fnc2 = new FullNameClass("Grigory", "Grigoriev", 18);
                         fnc2.Print();
                         fnc2.SerializeBin(bin);
                         Console.WriteLine("Сериализовано!");
@@ -77,7 +77,7 @@ namespace Laba28._03
                         Console.WriteLine("Введите путь к файлу: ");
                         path = Console.ReadLine();
                         FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
-                        FullNameClass fnc = new FullNameClass("Ivan", "Ivanov", "Ivanovichsuka");
+                        FullNameClass fnc = new FullNameClass("Ivan", "Ivanov", 20);
                         fnc.Print();
                         fnc.SerializeXML(fs);
                         Console.WriteLine("Сериализовано!");

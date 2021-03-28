@@ -14,13 +14,13 @@ namespace Laba28._03
         {
             public string Name { get; set; }
             public string Surname { get; set; }
-            public string MiddleName { get; set; }
+            public int Age { get; set; }
 
             public FullNameClass()
             { }
-            public FullNameClass(string name, string surname, string middle)
+            public FullNameClass(string name, string surname, int age)
             {
-                Name = name; Surname = surname; MiddleName = middle;
+                Name = name; Surname = surname; Age = age;
             }
 
             public void SerializeBin(FileStream fs)
@@ -36,7 +36,7 @@ namespace Laba28._03
             FullNameClass deserialized = (FullNameClass)bf.Deserialize(fs);
             Name = deserialized.Name;
             Surname = deserialized.Surname;
-            MiddleName = deserialized.MiddleName;
+            Age = deserialized.Age;
             fs.Close();
             }
 
@@ -53,12 +53,12 @@ namespace Laba28._03
                 FullNameClass deserialized = (FullNameClass)bf.Deserialize(fs);
                 Name = deserialized.Name;
                 Surname = deserialized.Surname;
-                MiddleName = deserialized.MiddleName;
+                Age = deserialized.Age;
                 fs.Close();
             }
             public void Print()
             {
-                Console.WriteLine("Name={0} Surname={1} Middle={2}", Name, Surname, MiddleName);
+                Console.WriteLine("Name={0} Surname={1} Middle={2}", Name, Surname, Age);
             }
         }
 }

@@ -10,10 +10,23 @@ namespace Laba28._03
     {
         public string directory;
         public string word;
+        public search[] data;
         public search(string keyword, string path)
         {
             this.directory = path;
             this.word = keyword;
+            data = new search[5];
+        }
+        public search this[int index]
+        {
+            get
+            {
+                return data[index];
+            }
+            set
+            {
+                data[index] = value;
+            }
         }
         public void result()
         {
