@@ -149,6 +149,19 @@ namespace Laba28._03
                             Console.WriteLine($"Новый текст:\n{textFromFile}");
                         }
                         break;
+                    case "8":
+                        string keyword123 = "day";
+                        string keyword1234 = "summer";
+                        path = @"D:\123";
+                        indexes indx = new indexes();
+                        indx[0] = new search(keyword123, path);
+                        indx[1] = new search(keyword1234, path);
+
+                        search day = indx[0];
+                        Console.WriteLine(day.word);
+
+                        Console.ReadKey();
+                        break;
                     default:
                         Console.WriteLine("Введено некорректное значение");
                         break;

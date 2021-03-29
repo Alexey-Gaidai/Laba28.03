@@ -6,17 +6,37 @@ using System.Linq;
 
 namespace Laba28._03
 {
-    class search
+    public class search
     {
         public string directory;
         public string word;
-        public search[] data;
         public search(string keyword, string path)
         {
             this.directory = path;
             this.word = keyword;
-            data = new search[5];
+
         }
+ 
+        public void result()
+        {
+            var keywords = from search in Directory.GetFiles(directory, "*", SearchOption.AllDirectories) where File.ReadAllLines(search).Contains(word) select search;
+
+            foreach (var files in keywords)
+            {
+                Console.WriteLine(files);
+
+            }
+        }
+    }
+
+    class indexes
+    {
+        search[] data;
+        public indexes()
+        {
+            data = new search[3];
+        }
+
         public search this[int index]
         {
             get
@@ -26,15 +46,6 @@ namespace Laba28._03
             set
             {
                 data[index] = value;
-            }
-        }
-        public void result()
-        {
-            var keywords = from search in Directory.GetFiles(directory, "*", SearchOption.AllDirectories) where File.ReadAllLines(search).Contains(word) select search;
-
-            foreach (var files in keywords)
-            {
-                Console.WriteLine(files);
             }
         }
     }
