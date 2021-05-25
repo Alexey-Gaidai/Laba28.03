@@ -94,6 +94,10 @@ namespace Laba28._03
                         Console.WriteLine("Файлы содержащие ключевое слово: ");
                         search kw = new search(keyword, path);
                         kw.result();
+                        file tom = new file();
+                        tom["keyword"] = keyword;
+                        tom["path"] = kw.paths;
+                        Console.WriteLine(tom["path"]);
                         break;
                     case "6":
                         using (FileStream fstream = File.OpenRead(path2))
