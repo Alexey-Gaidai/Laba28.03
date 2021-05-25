@@ -1,31 +1,64 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace Laba28._03
 {
     public class Memento
     {
-        public string State { get; private set; }
-        public Memento(string state)
+        public string textfromfile { get; private set; }
+        public Memento(string Text)
         {
-            this.State = state;
+            this.textfromfile = Text;
         }
     }
-    public class Caretaker
+    public class TextHistory//caretracker
     {
-        public Memento Memento { get; set; }
+        public Stack<Memento> History { get; private set; }
+        public TextHistory()
+        {
+            History = new Stack<Memento>();
+        }
     }
-    public class Originator
+    
+    class Text
     {
-        public string State { get; set; }
-        public void SetMemento(Memento memento)
+        public string path { get; set; }
+        public string textfromfile;
+        public Text(string Path)
         {
-            State = memento.State;
+            this.path = Path;
         }
-        public Memento CreateMemento()
+
+        public void ReadTxt()
         {
-            return new Memento(State);
+            FileStream fstream = File.OpenRead(path);
+                    // преобразуем строку в байты
+            byte[] array = new byte[fstream.Length];
+                    // считываем данные
+            fstream.Read(array, 0, array.Length);
+                    // декодируем байты в строку
+            textfromfile = System.Text.Encoding.Default.GetString(array);
+            Console.WriteLine("ваш текст: {0}", textfromfile);
+            fstream.Close();
+        }
+        public Memento SaveText()
+        {
+            Console.WriteLine("Сохранение текста: {0}", textfromfile);
+            return new Memento(textfromfile);
+        }
+        public void RestoreState(Memento memento)
+        {
+            this.textfromfile = memento.textfromfile;
+            File.WriteAllText(path, string.Empty);
+            using (FileStream fstream = new FileStream(path, FileMode.OpenOrCreate))
+            {
+                byte[] array = System.Text.Encoding.Default.GetBytes(this.textfromfile);
+                fstream.Write(array);
+            }
+            Console.WriteLine("Восстановление текста: {0}", textfromfile);
         }
     }
+    
 }

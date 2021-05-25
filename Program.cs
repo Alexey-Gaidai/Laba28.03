@@ -12,23 +12,16 @@ namespace Laba28._03
     {
         static void Main(string[] args)
         {
-            /*FileStream fs = new FileStream("D:\\FullNameSerialize.xml", FileMode.OpenOrCreate, FileAccess.Write);
-            FullNameClass fnc = new FullNameClass("Ivan", "Ivanov", "Ivanovich");
-            fnc.Print();
-            fnc.Serialize(fs);
-            fnc = new FullNameClass("Petr", "Petrov", "Petrovich");
-            fnc.Print();
-            fs = new FileStream("D:\\FullNameSerialize.xml", FileMode.OpenOrCreate, FileAccess.Read);
-            fnc.Deserialize(fs);
-            fnc.Print();
-            string path = @"D:\laba28.03";
-            search kw = new search("day", path);
-            kw.result();
-            */
-            
+
             string choice;//переменная ввода
             string path;
             string keyword;
+            Console.WriteLine("Введите текстовый файл для работы");
+            string path2 = Console.ReadLine();
+            Text text2 = new Text(path2);
+            TextHistory texthistory = new TextHistory();
+
+
 
             while (true)//менюшка, ее логика
             {
@@ -42,6 +35,8 @@ namespace Laba28._03
                     "5) Поиск по ключевым словам\n" +
                     "6) Прочесть файл\n" +
                     "7) Записать в файл\n" +
+                    "8) Сохранить файл\n" +
+                    "9) Вернуть сохранение\n" +
                     "f - ВЫХОД ИЗ ПРОГРАММЫ \n " +
                     "Ввод: ");
                 choice = Console.ReadLine();
@@ -101,9 +96,7 @@ namespace Laba28._03
                         kw.result();
                         break;
                     case "6":
-                        Console.WriteLine("Введите путь к файлу: ");
-                        path = Console.ReadLine();
-                        using (FileStream fstream = File.OpenRead(path))
+                        using (FileStream fstream = File.OpenRead(path2))
                         {
                             // преобразуем строку в байты
                             byte[] array = new byte[fstream.Length];
@@ -115,9 +108,7 @@ namespace Laba28._03
                         }
                         break;
                     case "7":
-                        Console.WriteLine("Введите путь к файлу: ");
-                        path = Console.ReadLine();
-                        using (FileStream fstream = File.OpenRead(path))
+                        using (FileStream fstream = File.OpenRead(path2))
                         {
                             // преобразуем строку в байты
                             byte[] array = new byte[fstream.Length];
@@ -131,14 +122,14 @@ namespace Laba28._03
                         string text = Console.ReadLine();
 
                         // запись в файл
-                        using (FileStream fstream = new FileStream(path, FileMode.OpenOrCreate))
+                        using (FileStream fstream = new FileStream(path2, FileMode.OpenOrCreate))
                         {
                             fstream.Seek(0, SeekOrigin.End);
                             byte[] array = System.Text.Encoding.Default.GetBytes(text);
                             fstream.Write(array);
                             Console.WriteLine("Текст записан в файл");
                         }
-                        using (FileStream fstream = File.OpenRead(path))
+                        using (FileStream fstream = File.OpenRead(path2))
                         {
                             // преобразуем строку в байты
                             byte[] array = new byte[fstream.Length];
@@ -148,6 +139,13 @@ namespace Laba28._03
                             string textFromFile = System.Text.Encoding.Default.GetString(array);
                             Console.WriteLine($"Новый текст:\n{textFromFile}");
                         }
+                        break;
+                    case "8":
+                        text2.ReadTxt();
+                        texthistory.History.Push(text2.SaveText());
+                        break;
+                    case "9":
+                        text2.RestoreState(texthistory.History.Pop());
                         break;
                     default:
                         Console.WriteLine("Введено некорректное значение");

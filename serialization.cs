@@ -10,7 +10,7 @@ namespace Laba28._03
 {
   
         [Serializable]
-        public class FullNameClass : Originator
+        public class FullNameClass 
         {
             public string Name { get; set; }
             public string Surname { get; set; }
