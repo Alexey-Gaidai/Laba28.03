@@ -86,7 +86,7 @@ namespace Laba28._03
                         fnc1.Print();
                         Console.WriteLine("Десериализовано!");
                         break;
-                    case "5":
+                    case "5"://
                         Console.WriteLine("Введите директорию: ");
                         path = Console.ReadLine();
                         Console.WriteLine("Введите Ключевое слово: ");
